@@ -14,6 +14,7 @@ void menu();
 void inicializar();
 void pop();
 void push();
+void exibirElementos();
 //--------------------------
 
 
@@ -33,6 +34,7 @@ void menu()
 		cout << "2 - Inserir elemento (Push) \n";
 		cout << "3 - Remover elementos (Pop) \n";
 		cout << "4 - Sair \n";
+		cout << "5 - Exibir\n";
 
 
 		cout << "Opcao: ";
@@ -48,6 +50,9 @@ void menu()
 			break;
 		case 4:
 			return;
+
+		case 5: exibirElementos();
+			break;
 		default:
 			break;
 		}
@@ -88,12 +93,40 @@ void push()
 	novo->prox = NULL;
 
 
+	if (topo == NULL) {
+		topo = novo;
+	}
+	else {
+		novo->prox = topo;
+		topo = novo;
+	}
 }
 
 void pop()
 {
-
-	
-
+	if (topo == NULL) {
+		cout << "Lista vazia";
+	}
+	else {
+		NO* aux = topo;
+		topo = topo->prox;
+		cout << aux->valor << endl; 
+		free(aux);
+	}
 }
 
+void exibirElementos()
+{
+	if (topo == NULL) {
+		cout << "Lista vazia \n";
+		return;
+	}
+	else {
+		cout << "Elementos: \n";
+		NO* aux = topo;
+		while (aux != NULL) {
+			cout << aux->valor << endl;
+			aux = aux->prox;
+		}
+	}
+}
